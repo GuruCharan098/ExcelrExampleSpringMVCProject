@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        form {
+            width: 350px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        cursor: pointer;
+        display:inline-block;        
+        background-color: green; 
+        color:white;
+        text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 th:text="${pageTitle}">Student Form</h1>
+
+    <form th:action="@{/students/save}"
+          th:object="${student}"
+          method="post">
+
+        <!-- Hidden field for Student ID -->
+        <input type="hidden" th:field="*{id}">
+
+        <label>Name:</label>
+        <input type="text"
+               id="name"
+               th:field="*{name}"
+               required>
+
+        <label>Email:</label>
+        <input type="email"
+               id="email"
+               th:field="*{email}"
+               required>
+
+        <label>Course:</label>
+        <input type="text"
+               id="course"
+               th:field="*{course}"
+               required>
+
+        <button type="submit">Save Student</button>
+
+    </form>
+
+    <br>
+
+    <a th:href="@{/students}">Back to Student List</a>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Student Management</title>
+
+<style>
+    body{
+       font-family:"Arial", sans-serif; 
+       margin:30px;
+    }
+    
+    table{
+        border-collapse: collaspe; 
+        width: 100%;
+    }
+    th,td{
+       border: 1px solid #cccccc; 
+       padding:10px; 
+       text-align: left;
+    }
+    th{
+       background-color: #eeeeee; 
+    }
+    a{
+      margin-right:8px; 
+    }
+    .add-btn{
+        display:inline-block;
+        margin-bottom: 10px; 
+        padding: 10px; 
+        background-color: #ae12ee; 
+        color:white;
+        text-decoration:none; 
+     }
+     
+     .edit-btn{
+        display:inline-block;
+        margin-bottom: 10px; 
+        padding: 10px; 
+        background-color: aqua; 
+        color:white;
+        text-decoration:none; 
+     }
+     
+     .delete-btn{
+        display:inline-block;
+        margin-bottom: 10px; 
+        padding: 10px; 
+        background-color: red; 
+        color:white;
+        text-decoration:none; 
+     }
+     
+     .view-btn{
+        display:inline-block;
+        margin-bottom: 10px; 
+        padding: 10px; 
+        background-color: green; 
+        color:white;
+        text-decoration:none; 
+     }
+</style>
+</head>
+<body>
+     <h1>Student Management System</h1>
+     <a th:href="@{/students/new}" class="add-btn"> Add New Student</a>
+
+     <table>
+       <thead>
+         <tr>
+             <th>ID</th>
+             <th>Name</th>
+             <th>Email</th>             
+              <th>Course</th>             
+              <th>Actions</th>            
+         </tr>
+       </thead>  
+         
+         <tbody>
+             <tr th:each="student : ${students}"> 
+                <td th:text="${student.id}"></td>
+              <td th:text="${student.name}"></td>
+              <td th:text="${student.email}"></td>
+               <td th:text="${student.course}"></td>
+               
+                <td><a th:href="@{/students/view/{id}(id= ${student.id})}" class="view-btn">View</a></td>
+                <td><a th:href="@{/students/edit/{id}(id= ${student.id})}" class="edit-btn">Edit</a></td>
+               <td> <a th:href="@{/students/delete/{id}(id= ${student.id})}" 
+                    onClick = "return confirm('Are you sure you want to delete this student?');" class="delete-btn">Delete</a></td>
+                
+                
+             </tr>
+         </tbody>
+     </table>
+   </body>
+</html>
